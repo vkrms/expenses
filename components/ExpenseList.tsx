@@ -47,7 +47,7 @@ export const ExpenseList: React.FC<ExpenseListProps> = ({ expenses, onDelete }) 
           </div>
           <div className="flex items-center gap-4">
             <span className="font-bold text-gray-900 dark:text-white">
-              ${expense.amount.toFixed(2)}
+              ฿{expense.amount.toFixed(2)}
             </span>
             <button
               onClick={() => expense.id && onDelete(expense.id)}

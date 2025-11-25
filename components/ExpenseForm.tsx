@@ -115,7 +115,7 @@ export const ExpenseForm: React.FC<ExpenseFormProps> = ({ onAdd, onCancel }) => 
             <div>
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Amount</label>
               <div className="relative">
-                <span className="absolute left-3 top-2 text-gray-400">$</span>
+                <span className="absolute left-3 top-2 text-gray-400">฿</span>
                 <input
                   type="number"
                   step="0.01"

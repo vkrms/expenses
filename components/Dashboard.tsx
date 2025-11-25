@@ -42,8 +42,8 @@ export const Dashboard: React.FC<DashboardProps> = ({ expenses }) => {
       <div className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 transition-colors">
         <h2 className="text-gray-500 dark:text-gray-400 text-sm font-medium uppercase tracking-wide">30-Day Total</h2>
         <div className="mt-2 flex items-baseline gap-2">
-          <span className="text-4xl font-extrabold text-gray-900 dark:text-white">${totalSpend.toFixed(2)}</span>
-          <span className="text-sm text-gray-400 dark:text-gray-500">USD</span>
+          <span className="text-4xl font-extrabold text-gray-900 dark:text-white">฿{totalSpend.toFixed(2)}</span>
+          <span className="text-sm text-gray-400 dark:text-gray-500">THB</span>
         </div>
       </div>
 
