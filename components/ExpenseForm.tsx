@@ -9,7 +9,7 @@ interface ExpenseFormProps {
 }
 
 export const ExpenseForm: React.FC<ExpenseFormProps> = ({ onAdd, onCancel }) => {
-  const [mode, setMode] = useState<'manual' | 'ai'>('ai');
+  const [mode, setMode] = useState<'manual' | 'ai'>('manual');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -78,17 +78,19 @@ export const ExpenseForm: React.FC<ExpenseFormProps> = ({ onAdd, onCancel }) => 
         <h2 className="text-xl font-bold text-gray-800 dark:text-white">Add Expense</h2>
         <div className="flex bg-gray-100 dark:bg-gray-700 p-1 rounded-lg">
           <button
-            onClick={() => setMode('ai')}
-            className={`px-3 py-1.5 rounded-md text-sm font-medium transition-all ${mode === 'ai' ? 'bg-white dark:bg-gray-600 text-emerald-600 dark:text-emerald-400 shadow-sm' : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200'}`}
-          >
-            <span className="flex items-center gap-1"><Sparkles className="w-3 h-3" /> Smart</span>
-          </button>
-          <button
             onClick={() => setMode('manual')}
             className={`px-3 py-1.5 rounded-md text-sm font-medium transition-all ${mode === 'manual' ? 'bg-white dark:bg-gray-600 text-emerald-600 dark:text-emerald-400 shadow-sm' : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200'}`}
           >
             Manual
           </button>
+
+          <button
+            onClick={() => setMode('ai')}
+            className={`px-3 py-1.5 rounded-md text-sm font-medium transition-all ${mode === 'ai' ? 'bg-white dark:bg-gray-600 text-emerald-600 dark:text-emerald-400 shadow-sm' : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200'}`}
+          >
+            <span className="flex items-center gap-1"><Sparkles className="w-3 h-3" /> Smart</span>
+          </button>
+
         </div>
       </div>
 
