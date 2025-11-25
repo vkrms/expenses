@@ -9,7 +9,6 @@ import { ThemeSettings } from './components/ThemeSettings';
 import { ThemeProvider } from './lib/theme';
 import { storage } from './lib/storage';
 import { Expense } from './types';
-import { isSupabaseConfigured } from './lib/supabase';
 import { STORAGE_KEYS } from './constants';
 import { format, isSameDay, parseISO } from 'date-fns';
 
@@ -116,22 +115,6 @@ function AppContent() {
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 font-sans pb-24 transition-colors duration-200">
-      {/* Header */}
-      <header className="bg-white dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700 sticky top-0 z-10 safe-top transition-colors duration-200">
-        <div className="max-w-3xl mx-auto px-4 h-16 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <div className="bg-emerald-500 p-1.5 rounded-lg text-white">
-              <Leaf className="w-5 h-5" />
-            </div>
-            <h1 className="text-xl font-bold tracking-tight text-gray-900 dark:text-white">NutriSpend</h1>
-          </div>
-          {!isSupabaseConfigured() && (
-             <span className="text-[10px] bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-200 px-2 py-0.5 rounded-full border border-amber-200 dark:border-amber-800">
-               Demo Mode (Local Storage)
-             </span>
-          )}
-        </div>
-      </header>
 
       {/* Main Content */}
       <main className="max-w-3xl mx-auto px-4 py-6">
@@ -179,7 +162,7 @@ function AppContent() {
       </main>
 
       {/* Floating Action Button (FAB) */}
-      {!showAddModal && (
+      {!showAddModal && location.pathname !== '/settings' && (
         <button
           onClick={() => setShowAddModal(true)}
           className="fixed bottom-24 right-6 w-14 h-14 bg-emerald-600 text-white rounded-full shadow-xl shadow-emerald-200 dark:shadow-emerald-900/40 flex items-center justify-center hover:bg-emerald-700 hover:scale-105 transition-all z-20"

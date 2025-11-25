@@ -30,12 +30,6 @@ export const ExpenseList: React.FC<ExpenseListProps> = ({ expenses, onDelete }) 
           className="bg-white dark:bg-gray-800 p-4 rounded-xl border border-gray-100 dark:border-gray-700 shadow-sm flex items-center justify-between group hover:border-emerald-200 dark:hover:border-emerald-800 transition-colors"
         >
           <div className="flex items-center gap-4">
-            <div 
-              className="w-10 h-10 rounded-full flex items-center justify-center text-white text-xs font-bold shadow-sm"
-              style={{ backgroundColor: CATEGORY_COLORS[expense.category] }}
-            >
-              {expense.category[0]}
-            </div>
             <div>
               <p className="font-medium text-gray-900 dark:text-gray-100">{expense.description}</p>
               <div className="flex items-center gap-2 text-xs text-gray-500 dark:text-gray-400">
