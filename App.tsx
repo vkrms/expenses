@@ -54,7 +54,7 @@ function AppContent() {
       // 3. Check if we already reminded today
       const lastReminded = localStorage.getItem(STORAGE_KEYS.LAST_REMINDED_DATE);
       const todayStr = format(now, 'yyyy-MM-dd');
-      
+
       if (lastReminded === todayStr) return; // Already reminded today
 
       // 4. Check if we already have expenses for today
@@ -69,30 +69,30 @@ function AppContent() {
 
       // 5. Trigger Notification
       if (Notification.permission === 'granted') {
-         const title = 'Log your meals!';
-         const options = {
-           body: "You haven't tracked any food expenses today yet.",
-           icon: 'https://picsum.photos/192/192',
-           tag: 'daily-reminder',
-           badge: 'https://picsum.photos/96/96',
-         };
+        const title = 'Log your meals!';
+        const options = {
+          body: "You haven't tracked any food expenses today yet.",
+          icon: 'https://picsum.photos/192/192',
+          tag: 'daily-reminder',
+          badge: 'https://picsum.photos/96/96',
+        };
 
-         if (navigator.serviceWorker && navigator.serviceWorker.controller) {
-           navigator.serviceWorker.ready.then(registration => {
-             registration.showNotification(title, options);
-           });
-         } else {
-           new Notification(title, options);
-         }
-         
-         // Mark as reminded
-         localStorage.setItem(STORAGE_KEYS.LAST_REMINDED_DATE, todayStr);
+        if (navigator.serviceWorker && navigator.serviceWorker.controller) {
+          navigator.serviceWorker.ready.then(registration => {
+            registration.showNotification(title, options);
+          });
+        } else {
+          new Notification(title, options);
+        }
+
+        // Mark as reminded
+        localStorage.setItem(STORAGE_KEYS.LAST_REMINDED_DATE, todayStr);
       }
     };
 
     // Check immediately on load/change
     if (!loading) {
-        checkReminder();
+      checkReminder();
     }
 
     // Set up interval to check every minute
@@ -140,8 +140,8 @@ function AppContent() {
         ) : (
           <Routes>
             <Route path="/" element={<Dashboard expenses={expenses} />} />
-            <Route 
-              path="/list" 
+            <Route
+              path="/list"
               element={
                 <div className="space-y-6">
                   <div className="flex justify-between items-center">
@@ -150,21 +150,21 @@ function AppContent() {
                   </div>
                   <ExpenseList expenses={expenses} onDelete={handleDeleteExpense} />
                 </div>
-              } 
+              }
             />
-            <Route 
-              path="/settings" 
+            <Route
+              path="/settings"
               element={
                 <div className="space-y-6">
                   <h2 className="text-lg font-bold text-gray-800 dark:text-gray-200">Settings</h2>
-                  
+
                   <ThemeSettings />
                   <ReminderSettings />
-                  
+
                   <div className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
                     <h3 className="font-semibold text-gray-900 dark:text-white mb-2">About</h3>
                     <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
-                      NutriSpend helps you track your food budget for the last 30 days. 
+                      NutriSpend helps you track your food budget for the last 30 days.
                       Use the "Smart Add" feature to input meals using natural language.
                     </p>
                     <div className="text-xs text-gray-400 dark:text-gray-500">
@@ -172,7 +172,7 @@ function AppContent() {
                     </div>
                   </div>
                 </div>
-              } 
+              }
             />
           </Routes>
         )}
@@ -192,22 +192,22 @@ function AppContent() {
       {/* Bottom Navigation */}
       <nav className="fixed bottom-0 left-0 right-0 bg-white dark:bg-gray-800 border-t border-gray-100 dark:border-gray-700 safe-bottom z-10 transition-colors duration-200">
         <div className="max-w-3xl mx-auto flex justify-around items-center h-16">
-          <Link 
-            to="/" 
+          <Link
+            to="/"
             className={`flex flex-col items-center gap-1 w-full h-full justify-center ${location.pathname === '/' ? 'text-emerald-600 dark:text-emerald-400' : 'text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300'}`}
           >
             <LayoutDashboard className="w-6 h-6" />
             <span className="text-[10px] font-medium">Overview</span>
           </Link>
-          <Link 
-            to="/list" 
+          <Link
+            to="/list"
             className={`flex flex-col items-center gap-1 w-full h-full justify-center ${location.pathname === '/list' ? 'text-emerald-600 dark:text-emerald-400' : 'text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300'}`}
           >
             <List className="w-6 h-6" />
             <span className="text-[10px] font-medium">History</span>
           </Link>
-          <Link 
-            to="/settings" 
+          <Link
+            to="/settings"
             className={`flex flex-col items-center gap-1 w-full h-full justify-center ${location.pathname === '/settings' ? 'text-emerald-600 dark:text-emerald-400' : 'text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300'}`}
           >
             <Settings className="w-6 h-6" />

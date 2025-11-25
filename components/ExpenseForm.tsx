@@ -25,7 +25,7 @@ export const ExpenseForm: React.FC<ExpenseFormProps> = ({ onAdd, onCancel }) => 
   const handleManualSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!description || !amount) return;
-    
+
     setLoading(true);
     try {
       await onAdd({
@@ -154,7 +154,7 @@ export const ExpenseForm: React.FC<ExpenseFormProps> = ({ onAdd, onCancel }) => 
             </div>
           </div>
           <div className="pt-4 flex gap-3">
-             <button
+            <button
               type="button"
               onClick={onCancel}
               className="flex-1 py-2.5 rounded-xl border border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-300 font-medium hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"

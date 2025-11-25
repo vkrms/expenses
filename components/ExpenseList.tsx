@@ -25,8 +25,8 @@ export const ExpenseList: React.FC<ExpenseListProps> = ({ expenses, onDelete }) 
   return (
     <div className="space-y-3">
       {expenses.map((expense) => (
-        <div 
-          key={expense.id} 
+        <div
+          key={expense.id}
           className="bg-white dark:bg-gray-800 p-4 rounded-xl border border-gray-100 dark:border-gray-700 shadow-sm flex items-center justify-between group hover:border-emerald-200 dark:hover:border-emerald-800 transition-colors"
         >
           <div className="flex items-center gap-4">

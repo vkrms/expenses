@@ -10,14 +10,14 @@ interface DashboardProps {
 
 export const Dashboard: React.FC<DashboardProps> = ({ expenses }) => {
   const totalSpend = useMemo(() => expenses.reduce((acc, curr) => acc + curr.amount, 0), [expenses]);
-  
+
   const categoryData = useMemo(() => {
     const map = new Map<ExpenseCategory, number>();
     expenses.forEach(e => {
       const current = map.get(e.category) || 0;
       map.set(e.category, current + e.amount);
     });
-    
+
     return Array.from(map.entries()).map(([name, value]) => ({ name, value }));
   }, [expenses]);
 
@@ -28,7 +28,7 @@ export const Dashboard: React.FC<DashboardProps> = ({ expenses }) => {
       const dateStr = format(date, 'yyyy-MM-dd');
       const dailyExpenses = expenses.filter(e => isSameDay(parseISO(e.date), date));
       const dailyTotal = dailyExpenses.reduce((acc, curr) => acc + curr.amount, 0);
-      
+
       data.push({
         date: format(date, 'MMM dd'),
         amount: dailyTotal
@@ -68,12 +68,12 @@ export const Dashboard: React.FC<DashboardProps> = ({ expenses }) => {
                       <Cell key={`cell-${index}`} fill={CATEGORY_COLORS[entry.name as ExpenseCategory] || '#ccc'} />
                     ))}
                   </Pie>
-                  <Tooltip 
+                  <Tooltip
                     formatter={(value: number) => `$${value.toFixed(2)}`}
                     contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)', color: '#111' }}
                     itemStyle={{ color: '#111' }}
                   />
-                  <Legend verticalAlign="bottom" height={36}/>
+                  <Legend verticalAlign="bottom" height={36} />
                 </PieChart>
               </ResponsiveContainer>
             ) : (
@@ -87,16 +87,16 @@ export const Dashboard: React.FC<DashboardProps> = ({ expenses }) => {
           <div className="h-64 w-full">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={last30DaysData}>
-                <XAxis 
-                  dataKey="date" 
-                  fontSize={10} 
-                  tickLine={false} 
+                <XAxis
+                  dataKey="date"
+                  fontSize={10}
+                  tickLine={false}
                   axisLine={false}
                   interval={6}
                   stroke="#9ca3af"
                 />
-                <YAxis 
-                  hide={true} 
+                <YAxis
+                  hide={true}
                 />
                 <Tooltip
                   cursor={{ fill: 'transparent' }}
