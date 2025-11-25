@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>NutriSpend</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+      }
+    </script>
     <link rel="manifest" href="/manifest.json" />
     <meta name="theme-color" content="#10b981" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -26,7 +31,7 @@
 }
 </script>
 </head>
-  <body class="bg-gray-50 text-gray-900 antialiased selection:bg-emerald-100 selection:text-emerald-900">
+  <body class="bg-gray-50 text-gray-900 antialiased selection:bg-emerald-100 selection:text-emerald-900 dark:bg-gray-900 dark:text-gray-100 dark:selection:bg-emerald-900 dark:selection:text-emerald-100">
     <div id="root"></div>
   </body>
 </html>

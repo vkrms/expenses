@@ -21,5 +21,6 @@ export const STORAGE_KEYS = {
   REMINDER_ENABLED: 'nutrispend_reminder_enabled',
   REMINDER_TIME: 'nutrispend_reminder_time',
   LAST_REMINDED_DATE: 'nutrispend_last_reminded',
-  EXPENSES: 'nutrispend_expenses'
+  EXPENSES: 'nutrispend_expenses',
+  THEME: 'nutrispend_theme'
 };

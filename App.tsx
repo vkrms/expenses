@@ -5,6 +5,8 @@ import { Dashboard } from './components/Dashboard';
 import { ExpenseForm } from './components/ExpenseForm';
 import { ExpenseList } from './components/ExpenseList';
 import { ReminderSettings } from './components/ReminderSettings';
+import { ThemeSettings } from './components/ThemeSettings';
+import { ThemeProvider } from './lib/theme';
 import { storage } from './lib/storage';
 import { Expense } from './types';
 import { isSupabaseConfigured } from './lib/supabase';
@@ -113,18 +115,18 @@ function AppContent() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 font-sans pb-24">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 font-sans pb-24 transition-colors duration-200">
       {/* Header */}
-      <header className="bg-white border-b border-gray-100 sticky top-0 z-10 safe-top">
+      <header className="bg-white dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700 sticky top-0 z-10 safe-top transition-colors duration-200">
         <div className="max-w-3xl mx-auto px-4 h-16 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <div className="bg-emerald-500 p-1.5 rounded-lg text-white">
               <Leaf className="w-5 h-5" />
             </div>
-            <h1 className="text-xl font-bold tracking-tight text-gray-900">NutriSpend</h1>
+            <h1 className="text-xl font-bold tracking-tight text-gray-900 dark:text-white">NutriSpend</h1>
           </div>
           {!isSupabaseConfigured() && (
-             <span className="text-[10px] bg-amber-100 text-amber-800 px-2 py-0.5 rounded-full border border-amber-200">
+             <span className="text-[10px] bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-200 px-2 py-0.5 rounded-full border border-amber-200 dark:border-amber-800">
                Demo Mode (Local Storage)
              </span>
           )}
@@ -143,8 +145,8 @@ function AppContent() {
               element={
                 <div className="space-y-6">
                   <div className="flex justify-between items-center">
-                    <h2 className="text-lg font-bold text-gray-800">History</h2>
-                    <span className="text-sm text-gray-500">{expenses.length} records</span>
+                    <h2 className="text-lg font-bold text-gray-800 dark:text-gray-200">History</h2>
+                    <span className="text-sm text-gray-500 dark:text-gray-400">{expenses.length} records</span>
                   </div>
                   <ExpenseList expenses={expenses} onDelete={handleDeleteExpense} />
                 </div>
@@ -154,17 +156,19 @@ function AppContent() {
               path="/settings" 
               element={
                 <div className="space-y-6">
-                  <h2 className="text-lg font-bold text-gray-800">Settings</h2>
+                  <h2 className="text-lg font-bold text-gray-800 dark:text-gray-200">Settings</h2>
+                  
+                  <ThemeSettings />
                   <ReminderSettings />
                   
-                  <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
-                    <h3 className="font-semibold text-gray-900 mb-2">About</h3>
-                    <p className="text-sm text-gray-600 mb-4">
+                  <div className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
+                    <h3 className="font-semibold text-gray-900 dark:text-white mb-2">About</h3>
+                    <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
                       NutriSpend helps you track your food budget for the last 30 days. 
                       Use the "Smart Add" feature to input meals using natural language.
                     </p>
-                    <div className="text-xs text-gray-400">
-                      Version 1.1.0
+                    <div className="text-xs text-gray-400 dark:text-gray-500">
+                      Version 1.2.0
                     </div>
                   </div>
                 </div>
@@ -178,7 +182,7 @@ function AppContent() {
       {!showAddModal && (
         <button
           onClick={() => setShowAddModal(true)}
-          className="fixed bottom-24 right-6 w-14 h-14 bg-emerald-600 text-white rounded-full shadow-xl shadow-emerald-200 flex items-center justify-center hover:bg-emerald-700 hover:scale-105 transition-all z-20"
+          className="fixed bottom-24 right-6 w-14 h-14 bg-emerald-600 text-white rounded-full shadow-xl shadow-emerald-200 dark:shadow-emerald-900/40 flex items-center justify-center hover:bg-emerald-700 hover:scale-105 transition-all z-20"
           aria-label="Add Expense"
         >
           <PlusCircle className="w-8 h-8" />
@@ -186,25 +190,25 @@ function AppContent() {
       )}
 
       {/* Bottom Navigation */}
-      <nav className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-100 safe-bottom z-10">
+      <nav className="fixed bottom-0 left-0 right-0 bg-white dark:bg-gray-800 border-t border-gray-100 dark:border-gray-700 safe-bottom z-10 transition-colors duration-200">
         <div className="max-w-3xl mx-auto flex justify-around items-center h-16">
           <Link 
             to="/" 
-            className={`flex flex-col items-center gap-1 w-full h-full justify-center ${location.pathname === '/' ? 'text-emerald-600' : 'text-gray-400 hover:text-gray-600'}`}
+            className={`flex flex-col items-center gap-1 w-full h-full justify-center ${location.pathname === '/' ? 'text-emerald-600 dark:text-emerald-400' : 'text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300'}`}
           >
             <LayoutDashboard className="w-6 h-6" />
             <span className="text-[10px] font-medium">Overview</span>
           </Link>
           <Link 
             to="/list" 
-            className={`flex flex-col items-center gap-1 w-full h-full justify-center ${location.pathname === '/list' ? 'text-emerald-600' : 'text-gray-400 hover:text-gray-600'}`}
+            className={`flex flex-col items-center gap-1 w-full h-full justify-center ${location.pathname === '/list' ? 'text-emerald-600 dark:text-emerald-400' : 'text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300'}`}
           >
             <List className="w-6 h-6" />
             <span className="text-[10px] font-medium">History</span>
           </Link>
           <Link 
             to="/settings" 
-            className={`flex flex-col items-center gap-1 w-full h-full justify-center ${location.pathname === '/settings' ? 'text-emerald-600' : 'text-gray-400 hover:text-gray-600'}`}
+            className={`flex flex-col items-center gap-1 w-full h-full justify-center ${location.pathname === '/settings' ? 'text-emerald-600 dark:text-emerald-400' : 'text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300'}`}
           >
             <Settings className="w-6 h-6" />
             <span className="text-[10px] font-medium">Settings</span>
@@ -217,8 +221,10 @@ function AppContent() {
 
 export default function App() {
   return (
-    <HashRouter>
-      <AppContent />
-    </HashRouter>
+    <ThemeProvider>
+      <HashRouter>
+        <AppContent />
+      </HashRouter>
+    </ThemeProvider>
   );
 }

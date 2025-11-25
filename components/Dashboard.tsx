@@ -39,17 +39,17 @@ export const Dashboard: React.FC<DashboardProps> = ({ expenses }) => {
 
   return (
     <div className="space-y-6 animate-fade-in">
-      <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
-        <h2 className="text-gray-500 text-sm font-medium uppercase tracking-wide">30-Day Total</h2>
+      <div className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 transition-colors">
+        <h2 className="text-gray-500 dark:text-gray-400 text-sm font-medium uppercase tracking-wide">30-Day Total</h2>
         <div className="mt-2 flex items-baseline gap-2">
-          <span className="text-4xl font-extrabold text-gray-900">${totalSpend.toFixed(2)}</span>
-          <span className="text-sm text-gray-400">USD</span>
+          <span className="text-4xl font-extrabold text-gray-900 dark:text-white">${totalSpend.toFixed(2)}</span>
+          <span className="text-sm text-gray-400 dark:text-gray-500">USD</span>
         </div>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 min-h-[300px]">
-          <h3 className="text-lg font-semibold text-gray-800 mb-4">Spend by Category</h3>
+        <div className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 min-h-[300px] transition-colors">
+          <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-4">Spend by Category</h3>
           <div className="h-64 w-full">
             {categoryData.length > 0 ? (
               <ResponsiveContainer width="100%" height="100%">
@@ -62,6 +62,7 @@ export const Dashboard: React.FC<DashboardProps> = ({ expenses }) => {
                     outerRadius={80}
                     paddingAngle={5}
                     dataKey="value"
+                    stroke="none"
                   >
                     {categoryData.map((entry, index) => (
                       <Cell key={`cell-${index}`} fill={CATEGORY_COLORS[entry.name as ExpenseCategory] || '#ccc'} />
@@ -69,19 +70,20 @@ export const Dashboard: React.FC<DashboardProps> = ({ expenses }) => {
                   </Pie>
                   <Tooltip 
                     formatter={(value: number) => `$${value.toFixed(2)}`}
-                    contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }}
+                    contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)', color: '#111' }}
+                    itemStyle={{ color: '#111' }}
                   />
                   <Legend verticalAlign="bottom" height={36}/>
                 </PieChart>
               </ResponsiveContainer>
             ) : (
-              <div className="h-full flex items-center justify-center text-gray-400 text-sm">No data available</div>
+              <div className="h-full flex items-center justify-center text-gray-400 dark:text-gray-500 text-sm">No data available</div>
             )}
           </div>
         </div>
 
-        <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 min-h-[300px]">
-          <h3 className="text-lg font-semibold text-gray-800 mb-4">Daily Trend</h3>
+        <div className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 min-h-[300px] transition-colors">
+          <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-4">Daily Trend</h3>
           <div className="h-64 w-full">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={last30DaysData}>
@@ -91,13 +93,15 @@ export const Dashboard: React.FC<DashboardProps> = ({ expenses }) => {
                   tickLine={false} 
                   axisLine={false}
                   interval={6}
+                  stroke="#9ca3af"
                 />
                 <YAxis 
                   hide={true} 
                 />
                 <Tooltip
                   cursor={{ fill: 'transparent' }}
-                  contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }}
+                  contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)', color: '#111' }}
+                  itemStyle={{ color: '#111' }}
                 />
                 <Bar dataKey="amount" fill="#10b981" radius={[4, 4, 0, 0]} />
               </BarChart>

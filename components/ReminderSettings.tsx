@@ -68,22 +68,22 @@ export const ReminderSettings: React.FC = () => {
   };
 
   return (
-    <div className="bg-emerald-50 p-5 rounded-2xl border border-emerald-100 space-y-4">
+    <div className="bg-emerald-50 dark:bg-emerald-900/20 p-5 rounded-2xl border border-emerald-100 dark:border-emerald-800 space-y-4">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <div className="bg-white p-2 rounded-xl text-emerald-600 shadow-sm">
+          <div className="bg-white dark:bg-emerald-800 p-2 rounded-xl text-emerald-600 dark:text-emerald-100 shadow-sm">
             {enabled ? <Bell className="w-5 h-5" /> : <BellOff className="w-5 h-5" />}
           </div>
           <div>
-            <h3 className="text-sm font-bold text-gray-900">Daily Reminders</h3>
-            <p className="text-xs text-gray-600">Get notified to track your meals.</p>
+            <h3 className="text-sm font-bold text-gray-900 dark:text-white">Daily Reminders</h3>
+            <p className="text-xs text-gray-600 dark:text-emerald-100/70">Get notified to track your meals.</p>
           </div>
         </div>
         
         <button
           onClick={toggleEnabled}
-          className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 ${
-            enabled ? 'bg-emerald-600' : 'bg-gray-300'
+          className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900 ${
+            enabled ? 'bg-emerald-600' : 'bg-gray-300 dark:bg-gray-600'
           }`}
         >
           <span
@@ -95,8 +95,8 @@ export const ReminderSettings: React.FC = () => {
       </div>
 
       {enabled && (
-        <div className="pt-3 border-t border-emerald-100/50 flex items-center justify-between animate-fade-in">
-          <label className="flex items-center gap-2 text-sm text-emerald-800 font-medium">
+        <div className="pt-3 border-t border-emerald-100/50 dark:border-emerald-800 flex items-center justify-between animate-fade-in">
+          <label className="flex items-center gap-2 text-sm text-emerald-800 dark:text-emerald-100 font-medium">
             <Clock className="w-4 h-4" />
             Remind me at:
           </label>
@@ -104,13 +104,13 @@ export const ReminderSettings: React.FC = () => {
             type="time"
             value={time}
             onChange={handleTimeChange}
-            className="bg-white border border-emerald-200 text-gray-900 text-sm rounded-lg focus:ring-emerald-500 focus:border-emerald-500 block p-2 outline-none shadow-sm"
+            className="bg-white dark:bg-emerald-900/40 border border-emerald-200 dark:border-emerald-800 text-gray-900 dark:text-white text-sm rounded-lg focus:ring-emerald-500 focus:border-emerald-500 block p-2 outline-none shadow-sm"
           />
         </div>
       )}
       
       {permission === 'denied' && (
-        <p className="text-xs text-red-500 mt-2">
+        <p className="text-xs text-red-500 dark:text-red-400 mt-2">
           Notifications are blocked in your browser settings. Please enable them to use this feature.
         </p>
       )}
