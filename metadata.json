@@ -1,0 +1,7 @@
+{
+  "name": "NutriSpend - Smart Food Tracker",
+  "description": "A PWA-enabled food expense tracker with Supabase integration and AI-powered smart entry.",
+  "requestFramePermissions": [
+    "microphone"
+  ]
+}
